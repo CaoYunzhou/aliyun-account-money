@@ -1,0 +1,7 @@
+requests==2.25.1
+python-dateutil==2.8.2
+AcsClient==1.0.10
+aliyunsdkcore==1.0.3
+aliyun-python-sdk-core
+aliyun-python-sdk-bssopenapi==2.0.3
+python-dotenv==0.21.1

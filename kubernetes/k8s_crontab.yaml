@@ -1,0 +1,29 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: aliyun-account-cronjob
+spec:
+  # 每天凌晨0点1分开始执行
+  schedule: "1 0 * * *" # 参考定时计划任务（分时日月周）
+  startingDeadlineSeconds: 15 # pod必须在规定时间后的15秒内开始执行，若超过该时间未执行，则任务将不运行，且标记失败
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app: aliyun-account-cronjob
+        spec:
+          containers:
+            - name: aliyun-account-cronjob
+              imagePullPolicy: Always
+              image: caoyunzhou/aliyun-account-cronjob
+              env:
+                - name: WEBHOOK_URL
+                  value: ""
+                - name: SECRET
+                  value: ""
+                - name: AK
+                  value: ""
+                - name: SK
+                  value: ""
+          restartPolicy: OnFailure
